@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router();
 
 const Task = require('../models/Task');
+const Subtask = require('../models/Subtask');
 
 router.get('/test', (req, res) => res.send('Task route testing'));
 
@@ -33,6 +34,12 @@ router.delete('/:id', (req, res) => {
   Task.findByIdAndRemove(req.params.id, req.body)
     .then(task => res.json({ msg: 'Task entry deleted successfully'}))
     .catch(err => res.status(404).json({ error: 'No such task'}));
+});
+
+router.post('/:id', (req, res) => {
+  Subtask.create(req.body)
+    .then(subtask => res.json({ msg: 'Subtask added successfully'}))
+    .catch(err => res.status(400).json({ error: 'Unable to add this subtask'}));
 });
 
 module.exports = router;

@@ -5,16 +5,14 @@ const TaskSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  subtasks: {
+    type: Array,
+    required: true
+  },
   completed: {
     type: Boolean,
-    default: false
-  },
-  date_added: {
-    type: Date,
-    default: Date.now
-  },
-  subtasks: {
-    type: Array
+    default: false,
+    required: true
   }
 });
 
